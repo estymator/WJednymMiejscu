@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WJednymMiejscu</string>
+    
+<!--    Menu Strings-->
+    <string name="menu_prices_text">Kursy</string>
+    <string name="menu_alert_text">Alarmy</string>
 </resources>
