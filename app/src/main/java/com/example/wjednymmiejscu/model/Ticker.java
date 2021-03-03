@@ -1,79 +1,75 @@
 package com.example.wjednymmiejscu.model;
 
+
 /**
- * Class with basic informations from exchange
- * max - transaction with highest rate
- * min - transaction with lowest rate
- * last -
- * bid - best buying rate
- * ask - best selling rate
- * vwap -weighted average from last 24h
- * average - weighted average from 3 last best selling bids
- * volume
+ * time - unix representation of time
+ * highestBid - currently best buy offer
+ * lowestAsk - currently best sell offer
+ * rate - rate of last transaction
+ * previousRate - rate of penultimate transaction
  */
 public class Ticker {
-    private String currency1, currency2;
-    private Double max, min, last, bid, ask, vwap, average, volume;
+    private long time;
+    Double highestBid, lowestASK, rate, previousRate;
+    private Market market;
 
-
-    public void setCurrency1(String currency1) {
-        this.currency1 = currency1;
+    public long getTime() {
+        return time;
     }
 
-    public void setCurrency2(String currency2) {
-        this.currency2 = currency2;
+    public void setTime(long time) {
+        this.time = time;
     }
 
-    public String getCurrency1() {
-        return currency1;
+    public Double getHighestBid() {
+        return highestBid;
     }
 
-    public String getCurrency2() {
-        return currency2;
+    public void setHighestBid(Double highestBid) {
+        this.highestBid = highestBid;
     }
 
-    public Double getMax() {
-        return max;
+    public Double getLowestASK() {
+        return lowestASK;
     }
 
-    public Double getMin() {
-        return min;
+    public void setLowestASK(Double lowestASK) {
+        this.lowestASK = lowestASK;
     }
 
-    public Double getLast() {
-        return last;
+    public Double getRate() {
+        return rate;
     }
 
-    public Double getBid() {
-        return bid;
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 
-    public Double getAsk() {
-        return ask;
+    public Double getPreviousRate() {
+        return previousRate;
     }
 
-    public Double getVwap() {
-        return vwap;
+    public void setPreviousRate(Double previousRate) {
+        this.previousRate = previousRate;
     }
 
-    public Double getAverage() {
-        return average;
+    public Market getMarket() {
+        return market;
     }
 
-    public Double getVolume() {
-        return volume;
+    public void setMarket(Market market) {
+        this.market = market;
     }
 
-    public Ticker(String currency1, String currency2, Double max, Double min, Double last, Double bid, Double ask, Double vwap, Double average, Double volume) {
-        this.currency1 = currency1;
-        this.currency2 = currency2;
-        this.max = max;
-        this.min = min;
-        this.last = last;
-        this.bid = bid;
-        this.ask = ask;
-        this.vwap = vwap;
-        this.average = average;
-        this.volume = volume;
+    @Override
+    public String toString() {
+        return "Ticker{" +
+                "time=" + time +
+                ", highestBid=" + highestBid +
+                ", lowestASK=" + lowestASK +
+                ", rate=" + rate +
+                ", previousRate=" + previousRate +
+                ", market=" + market +
+                '}';
     }
 }

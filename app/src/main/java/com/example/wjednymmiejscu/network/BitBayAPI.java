@@ -1,15 +1,16 @@
 package com.example.wjednymmiejscu.network;
 
 import com.example.wjednymmiejscu.model.Ticker;
+import com.example.wjednymmiejscu.model.TickerArray;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface BitBayAPI {
-    @GET("/{curr1}{curr2}/ticker.json")
-    Call<Ticker> getTickerData(
-            @Path("curr1") String curr1,
-            @Path("curr2") String curr2
-    );
+    /**
+     * get all markets stats in ticker
+     */
+    @GET("/trading/ticker")
+    Call<TickerArray> getTickerData();
 }

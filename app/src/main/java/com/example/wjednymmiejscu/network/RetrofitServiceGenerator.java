@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class RetrofitServiceGenerator {
-    private static final String BASE_URL = "https://bitbay.net/API/Public";
+    private static final String BASE_URL = "https://api.bitbay.net/rest";
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
                     .baseUrl(BASE_URL)

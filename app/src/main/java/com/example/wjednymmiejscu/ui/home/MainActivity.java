@@ -22,6 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
         currencyRecyclerView = findViewById(R.id.main_currency_recyclerView);
         currencyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        currencyRecyclerView.setAdapter(new CurrencyAdapter());
+        currencyRecyclerView.setAdapter(new CurrencyAdapter(mainViewModel.getCurrencyList().getValue()));
     }
 }
