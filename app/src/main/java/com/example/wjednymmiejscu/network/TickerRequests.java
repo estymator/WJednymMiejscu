@@ -30,16 +30,18 @@ public class TickerRequests {
                     if(response.isSuccessful()){
 
                         if(response.body()!=null&&response.body().getStatus().equals("Ok")) {
-                            TickerArray result= new TickerArray();
-                            try{
-                                result =(TickerArray) response.body();
-                            }catch (Throwable t){
-                                getTickerFailure(t.getMessage());
+                            TickerArray result = new TickerArray();
+                            try {
+                                result = (TickerArray) response.body();
+                            } catch (Throwable t) {
+                                getTicketFailure(t.getMessage());
                             }
                             getTicketSuccess(result);
+                        }else if(response.body()!=null&&response.body().getStatus().equals("Fail")){
+                            getTicketFailure(response.body().getErrors());
                         }else
                         {
-                            getTickerFailure("Bład pobrania danych");
+                            getTicketFailure("Bład pobrania danych");
                         }
                     }else{
                         Log.v(TAG,"ResponseSuccessful not 200");
@@ -47,13 +49,13 @@ public class TickerRequests {
                         NetworkError errorBody = gson.fromJson(response.errorBody().charStream(), NetworkError.class);
                         String message = errorBody.getMessage();
                         Log.v(TAG,message);
-                        getTickerFailure(message);
+                        getTicketFailure(message);
                     }
                 }
                 @Override
                 public void onFailure(Call<TickerArray> call, Throwable t) {
                     Log.v(TAG,"onFailure");
-                    getTickerFailure(t.getMessage());
+                    getTicketFailure(t.getMessage());
                 }
             });
         }catch (Exception e)
@@ -66,7 +68,9 @@ public class TickerRequests {
         this.tickerList.setValue(result);
     }
 
-    private void getTickerFailure(String mess){
-        Log.v(TAG, mess);
+    private void getTicketFailure(String mess){
+        if(mess!=null){
+            Log.v(TAG, mess);
+        }
     }
 }
