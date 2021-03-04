@@ -1,6 +1,7 @@
 package com.example.wjednymmiejscu.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * status - status of response
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  */
 public class TickerArray {
     private String status;
-    private ArrayList<Ticker> items;
+    private HashMap<String, Ticker> items;
 
     public String getStatus() {
         return status;
@@ -18,17 +19,10 @@ public class TickerArray {
         this.status = status;
     }
 
-    public ArrayList<Ticker> getItems() {
-        return items;
-    }
-
-    public void setItems(ArrayList<Ticker> items) {
-        this.items = items;
-    }
 
     @Override
     public String toString() {
-        return "TickerArray{" +
+        return "{" +
                 "status='" + status + '\'' +
                 ", items=" + items +
                 '}';

@@ -1,14 +1,17 @@
 package com.example.wjednymmiejscu.ui.home;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.wjednymmiejscu.R;
 import com.example.wjednymmiejscu.adapters.CurrencyAdapter;
+import com.example.wjednymmiejscu.model.TickerArray;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG="MainActivityTAG";
@@ -22,6 +25,14 @@ public class MainActivity extends AppCompatActivity {
 
         currencyRecyclerView = findViewById(R.id.main_currency_recyclerView);
         currencyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        currencyRecyclerView.setAdapter(new CurrencyAdapter(mainViewModel.getCurrencyList().getValue()));
+
+        mainViewModel.getCurrencyList().observe(this, new Observer<TickerArray>() {
+            @Override
+            public void onChanged(TickerArray tickerArray) {
+                Log.v(TAG, tickerArray.toString());
+            }
+        });
+
+        mainViewModel.loadRates();
     }
 }

@@ -11,6 +11,6 @@ public interface BitBayAPI {
     /**
      * get all markets stats in ticker
      */
-    @GET("/trading/ticker")
+    @GET("rest/trading/ticker")
     Call<TickerArray> getTickerData();
 }

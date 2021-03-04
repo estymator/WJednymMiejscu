@@ -15,12 +15,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TickerRequests {
-    private final static String TAG="TikcerRequestsTAG";
+    private final static String TAG="TickerRequestsTAG";
     private BitBayAPI bitBayAPI;
-    private MutableLiveData<ArrayList<TickerArray>> tickerList;
+    private MutableLiveData<TickerArray> tickerList;
 
-    public void loadTicker(ArrayList<TickerArray> tickersList){
-        this.tickerList=tickerList;
+    public void loadTicker(MutableLiveData<TickerArray> tickersList){
+        this.tickerList=tickersList;
         bitBayAPI = RetrofitServiceGenerator.createService(BitBayAPI.class);
         try{
             Call<TickerArray> getCurrencyCall = bitBayAPI.getTickerData();
@@ -29,7 +29,7 @@ public class TickerRequests {
                 public void onResponse(Call<TickerArray> call, Response<TickerArray> response) {
                     if(response.isSuccessful()){
 
-                        if(response.body()!=null) {
+                        if(response.body()!=null&&response.body().getStatus().equals("Ok")) {
                             TickerArray result= new TickerArray();
                             try{
                                 result =(TickerArray) response.body();
@@ -63,7 +63,7 @@ public class TickerRequests {
     }
 
     private void getTicketSuccess(TickerArray result){
-        this.tickerList.getValue().add(result);
+        this.tickerList.setValue(result);
     }
 
     private void getTickerFailure(String mess){
