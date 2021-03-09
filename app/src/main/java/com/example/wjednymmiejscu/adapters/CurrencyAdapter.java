@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,7 +24,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView codeTextView, priceTextView;
-        private final AppCompatImageView iconImageView;
+        private final ImageView iconImageView;
         public ViewHolder(View view){
             super(view);
             codeTextView = view.findViewById(R.id.currencyItem_code);
@@ -39,7 +40,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
             return priceTextView;
         }
 
-        public AppCompatImageView getIconImageView() {
+        public ImageView getIconImageView() {
             return iconImageView;
         }
     }
@@ -59,13 +60,20 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.v(TAG,"Zapisuje"+dataSet.size()+" "+position);
         if(dataSet.size()>0){
             String marketCode = markets[position];
             Ticker bufor = dataSet.get(marketCode);
-            Log.v(TAG,"Zapisuje"+bufor.getRate());
             holder.getCodeTextView().setText(bufor.getMarket().getCode());
             holder.getPriceTextView().setText(bufor.getRate().toString());
+            String code = bufor.getMarket().getCode().split("-")[0].toLowerCase();
+            try {
+                int id = R.drawable.class.getField(code).getInt(null);
+                holder.getIconImageView().setImageResource(id);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            }
         }
     }
 

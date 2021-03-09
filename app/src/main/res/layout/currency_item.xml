@@ -13,17 +13,18 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/basic_margin"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/currencyItem_icon"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/currencyItem_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/currency_icon_width"
+        android:layout_height="@dimen/currency_icon_height"
         android:layout_margin="@dimen/basic_margin"
-        app:layout_constraintStart_toStartOf="@id/currencyItem_code"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
+
 
     <TextView
         android:id="@+id/currencyItem_price"

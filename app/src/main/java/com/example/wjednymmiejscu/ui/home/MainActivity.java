@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainViewModel = new ViewModelProvider(this, new MainViewModelProvider()).get(MainViewModel.class);
-
         currencyRecyclerView = findViewById(R.id.main_currency_recyclerView);
         currencyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         currencyRecyclerView.setAdapter(mainViewModel.getCurrencyAdapter());
