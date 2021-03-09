@@ -6,13 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.MainActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_currency_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/basic_margin"
+        android:visibility="visible"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    </ScrollView>
 
     <include layout="@layout/navigation_bar"/>
 

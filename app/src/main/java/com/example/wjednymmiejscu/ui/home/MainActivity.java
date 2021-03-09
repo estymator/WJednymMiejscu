@@ -25,11 +25,14 @@ public class MainActivity extends AppCompatActivity {
 
         currencyRecyclerView = findViewById(R.id.main_currency_recyclerView);
         currencyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        currencyRecyclerView.setAdapter(mainViewModel.getCurrencyAdapter());
         mainViewModel.getCurrencyList().observe(this, new Observer<TickerArray>() {
             @Override
             public void onChanged(TickerArray tickerArray) {
-                Log.v(TAG, tickerArray.toString());
+                Log.v(TAG,"OnChanged"+tickerArray.getItems().size());
+                mainViewModel.getCurrencyAdapterDataSource().clear();
+                mainViewModel.getCurrencyAdapterDataSource().putAll(tickerArray.getItems());
+                mainViewModel.getCurrencyAdapter().notifyDataSetChanged();
             }
         });
 
