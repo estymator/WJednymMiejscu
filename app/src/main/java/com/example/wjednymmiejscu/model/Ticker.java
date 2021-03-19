@@ -1,6 +1,8 @@
 package com.example.wjednymmiejscu.model;
 
 
+import java.io.Serializable;
+
 /**
  * time - unix representation of time
  * highestBid - currently best buy offer
@@ -8,7 +10,7 @@ package com.example.wjednymmiejscu.model;
  * rate - rate of last transaction
  * previousRate - rate of penultimate transaction
  */
-public class Ticker {
+public class Ticker implements Serializable {
     private long time;
     Double highestBid, lowestASK, rate, previousRate;
     private Market market;

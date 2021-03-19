@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">WJednymMiejscu</string>
-    
-<!--    Menu Strings-->
+
+    <!--    Menu Strings-->
     <string name="menu_prices_text">Kursy</string>
     <string name="menu_alert_text">Alarmy</string>
+
+    <!--    MainPages String-->
+    <string name="main_name_header">Waluta</string>
+    <string name="main_price_header">Kurs</string>
+   <string name="main_calc_desc">Kalkulator kryptowalut, wybierz waluty i podaj ilosc:</string>
 </resources>

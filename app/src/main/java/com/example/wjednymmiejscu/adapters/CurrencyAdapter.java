@@ -1,5 +1,6 @@
 package com.example.wjednymmiejscu.adapters;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wjednymmiejscu.R;
 import com.example.wjednymmiejscu.model.Ticker;
+import com.example.wjednymmiejscu.ui.currency.CurrencyActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,11 +63,20 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if(dataSet.size()>0){
+
             String marketCode = markets[position];
             Ticker bufor = dataSet.get(marketCode);
-            holder.getCodeTextView().setText(bufor.getMarket().getCode());
+            holder.getCodeTextView().setText(bufor.getMarket().getCode().split("-")[0]);
             holder.getPriceTextView().setText(bufor.getRate().toString());
             String code = bufor.getMarket().getCode().split("-")[0].toLowerCase();
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), CurrencyActivity.class);
+                    intent.putExtra("currency", bufor);
+                    view.getContext().startActivity(intent);
+                }
+            });
             try {
                 int id = R.drawable.class.getField(code).getInt(null);
                 holder.getIconImageView().setImageResource(id);
@@ -82,7 +93,4 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
         return markets.length;
     }
 
-    public void setDataSet(HashMap<String, Ticker> dataSet) {
-        this.dataSet = dataSet;
-    }
 }

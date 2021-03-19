@@ -1,10 +1,12 @@
 package com.example.wjednymmiejscu.model;
 
+import java.io.Serializable;
+
 /**
  * code - code of market XXX-XXX
  * first,second - informations about currencies in given market
  */
-public class Market {
+public class Market implements Serializable {
     private String code;
     private CurrencyInfo first, second;
 

@@ -1,11 +1,13 @@
 package com.example.wjednymmiejscu.model;
 
+import java.io.Serializable;
+
 /**
  * currency - currency code XXX
  * minOffer - lowest amount available to operate
  * scale - precision od rate
  */
-public class CurrencyInfo {
+public class CurrencyInfo implements Serializable {
     private String currency;
     private Double minOffer;
     private int scale;

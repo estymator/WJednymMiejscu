@@ -6,17 +6,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.MainActivity">
+    <TextView
+        android:id="@+id/currencyItem_nameHeader_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_name_header"
+        android:layout_margin="@dimen/basic_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/currencyItem_priceHeader_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_price_header"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/basic_margin"
+        android:layout_marginRight="@dimen/tab_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_currency_recyclerView"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/basic_margin"
-        android:visibility="visible"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/currencyItem_nameHeader_textView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_currency_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/basic_margin"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/main_calcDesc_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/basic_margin"
+                app:layout_constraintTop_toBottomOf="@id/main_currency_recyclerView"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/main_calc_desc"
+                />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/main_firstCurrencies_fragmentView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/main_calcDesc_textView"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <EditText
+                android:id="@+id/main_amountToCalc_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:layout_margin="@dimen/basic_margin"
+                app:layout_constraintTop_toBottomOf="@id/main_firstCurrencies_fragmentView"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/main_secondCurrencies_fragmentView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/basic_margin"
+                app:layout_constraintTop_toBottomOf="@id/main_amountToCalc_editText"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+            <TextView
+                android:id="@+id/main_calcResult_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/basic_margin"
+                app:layout_constraintTop_toBottomOf="@id/main_secondCurrencies_fragmentView"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
