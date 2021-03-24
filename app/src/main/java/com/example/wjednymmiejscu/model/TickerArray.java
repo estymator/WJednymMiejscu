@@ -13,7 +13,14 @@ public class TickerArray {
     private String status;
     private HashMap<String, Ticker> items;
     @Nullable
-    private String errors;
+    private String[] errors;
+
+    public TickerArray(@Nullable String[] errors) {
+        this.errors = errors;
+    }
+
+    public TickerArray() {
+    }
 
     public String getStatus() {
         return status;
@@ -32,11 +39,11 @@ public class TickerArray {
     }
 
     @Nullable
-    public String getErrors() {
+    public String[] getErrors() {
         return errors;
     }
 
-    public void setErrors(@Nullable String errors) {
+    public void setErrors(@Nullable String[] errors) {
         this.errors = errors;
     }
 

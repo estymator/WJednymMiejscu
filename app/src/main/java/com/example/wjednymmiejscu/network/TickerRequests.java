@@ -28,49 +28,53 @@ public class TickerRequests {
                 @Override
                 public void onResponse(Call<TickerArray> call, Response<TickerArray> response) {
                     if(response.isSuccessful()){
-
-                        if(response.body()!=null&&response.body().getStatus().equals("Ok")) {
+                        if(response.body()==null){
+                            getTickerFailure("response body is null");
+                            return;
+                        }
+                        if(response.body().getStatus().equals("Ok")) {
                             TickerArray result = new TickerArray();
                             try {
                                 result = (TickerArray) response.body();
                             } catch (Throwable t) {
-                                getTicketFailure(t.getMessage());
+                                getTickerFailure(t.getMessage());
                             }
-                            getTicketSuccess(result);
-                        }else if(response.body()!=null&&response.body().getStatus().equals("Fail")){
-                            getTicketFailure(response.body().getErrors());
+                            getTickerSuccess(result);
+                        }else if(response.body().getStatus().equals("Fail")){
+                            getTickerFailure(response.body().getErrors());
                         }else
                         {
-                            getTicketFailure("Bład pobrania danych");
+                            getTickerFailure("Bład pobrania danych");
                         }
                     }else{
-                        Log.v(TAG,"ResponseSuccessful not 200");
                         Gson gson = new Gson();
                         NetworkError errorBody = gson.fromJson(response.errorBody().charStream(), NetworkError.class);
                         String message = errorBody.getMessage();
                         Log.v(TAG,message);
-                        getTicketFailure(message);
+                        getTickerFailure(message);
                     }
                 }
                 @Override
                 public void onFailure(Call<TickerArray> call, Throwable t) {
                     Log.v(TAG,"onFailure");
-                    getTicketFailure(t.getMessage());
+                    getTickerFailure(t.getMessage());
                 }
             });
         }catch (Exception e)
         {
-            Log.v(TAG,e.getMessage());
+            getTickerFailure(e.getMessage());
         }
     }
 
-    private void getTicketSuccess(TickerArray result){
+    private void getTickerSuccess(TickerArray result){
         this.tickerList.setValue(result);
     }
 
-    private void getTicketFailure(String mess){
-        if(mess!=null){
-            Log.v(TAG, mess);
-        }
+    private void getTickerFailure(String mess){
+        String[] messages = {mess};
+        tickerList.setValue(new TickerArray(messages));
+    }
+    private void getTickerFailure(String[] mess){
+        tickerList.setValue(new TickerArray(mess));
     }
 }
