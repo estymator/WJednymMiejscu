@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView currencyRecyclerView;
     private EditText amountEditText;
     private TextView calcResultTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
         amountEditText =(EditText) findViewById(R.id.main_amountToCalc_editText);
         amountEditText.setText("1");
-
         amountEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     mainViewModel.setCalculatorAmount(Double.valueOf(editable.toString()));
                     mainViewModel.calculate();
+                }catch(NumberFormatException e){
+
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         calcResultTextView = (TextView) findViewById(R.id.main_calcResult_textView);
-        calcResultTextView.setText("1");
+        calcResultTextView.setText("Wybierz waluty");
 
 
         mainViewModel.getCurrencyList().observe(this, new Observer<TickerArray>() {
@@ -88,11 +90,14 @@ public class MainActivity extends AppCompatActivity {
         mainViewModel.getCalculatorResult().observe(this, new Observer<Double>() {
             @Override
             public void onChanged(Double aDouble) {
-                String result = aDouble.toString().split("\\.")[0].concat(".").concat(aDouble.toString().split("\\.")[1].substring(0,1)); // Result normalization
-                calcResultTextView.setText(result);
+                String firstCurrency = mainViewModel.getCalculatorAmount()+" "+ mainViewModel.getCalculatorFirstRowCurr().getValue()+" to ";
+                // String result = aDouble.toString().split("\\.")[0].concat(".").concat(aDouble.toString().split("\\.")[1].substring(0,2)); // Result normalization
+                String secondCurrency = " "+mainViewModel.getCalculatorSecondRowCurr().getValue();
+                calcResultTextView.setText(firstCurrency+aDouble+secondCurrency);
             }
         });
 
         mainViewModel.loadRates();
+
     }
 }

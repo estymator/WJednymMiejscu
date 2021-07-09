@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 /**
  * status - status of response
- * items - list of martket objects
+ * items - list of market objects
  */
 public class TickerArray {
     private String status;

@@ -35,6 +35,7 @@ public class MarketStatsRequests {
                             MarketStatsResponse result = new MarketStatsResponse();
                             try {
                                 result = (MarketStatsResponse) response.body();
+                                result.setCode(market);
                             } catch (Throwable t) {
                                 getMarketStatsFailure(t.getMessage());
                             }

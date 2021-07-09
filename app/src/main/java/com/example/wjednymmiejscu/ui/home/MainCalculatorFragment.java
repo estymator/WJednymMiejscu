@@ -62,7 +62,7 @@ public class MainCalculatorFragment extends Fragment {
         currenciesRecyclerView = view.findViewById(R.id.mainCalc_recyclerView);
         currenciesRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL,false));
         if(mRow==1){
-            currenciesRecyclerView.setAdapter(new CalculatorAdapter(mainViewModel.getMarketsList(), mainViewModel.getCalculatorFirstRowCurr()));
+            currenciesRecyclerView.setAdapter(new CalculatorAdapter(mainViewModel.getCurrenciesCalculatorList(), mainViewModel.getCalculatorFirstRowCurr()));
             mainViewModel.getCalculatorFirstRowCurr().observe(getViewLifecycleOwner(), new Observer<String>() {
                 @Override
                 public void onChanged(String s) {
@@ -70,7 +70,7 @@ public class MainCalculatorFragment extends Fragment {
                 }
             });
         }else if(mRow==2){
-            currenciesRecyclerView.setAdapter(new CalculatorAdapter(mainViewModel.getMarketsList(), mainViewModel.getCalculatorSecondRowCurr()));
+            currenciesRecyclerView.setAdapter(new CalculatorAdapter(mainViewModel.getCurrenciesCalculatorList(), mainViewModel.getCalculatorSecondRowCurr()));
             mainViewModel.getCalculatorSecondRowCurr().observe(getViewLifecycleOwner(), new Observer<String>() {
                 @Override
                 public void onChanged(String s) {

@@ -34,6 +34,7 @@ public class OrderBookRequests {
                             OrderBook result = new OrderBook();
                             try {
                                 result = (OrderBook) response.body();
+                                result.setCode(market);
                             } catch (Throwable t) {
                                 getOrderBookFailure(t.getMessage());
                             }

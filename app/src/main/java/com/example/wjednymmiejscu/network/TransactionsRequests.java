@@ -34,6 +34,7 @@ public class TransactionsRequests {
                             LastTransactions result = new LastTransactions();
                             try {
                                 result = (LastTransactions) response.body();
+                                result.setCode(market);
                             } catch (Throwable t) {
                                 getLastTransactionsFailure(t.getMessage());
                             }

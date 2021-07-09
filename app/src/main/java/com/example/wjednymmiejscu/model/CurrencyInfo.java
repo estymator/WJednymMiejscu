@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * currency - currency code XXX
  * minOffer - lowest amount available to operate
- * scale - precision od rate
+ * scale - rate precision
  */
 public class CurrencyInfo implements Serializable {
     private String currency;

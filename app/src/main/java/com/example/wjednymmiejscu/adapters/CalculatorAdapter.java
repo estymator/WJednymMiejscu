@@ -55,7 +55,7 @@ public class CalculatorAdapter extends RecyclerView.Adapter<CalculatorAdapter.Vi
                 currency.setValue(textView.getText().toString());
             }
         });
-        return new ViewHolder(view);
+        return viewHolder;
     }
 
     @Override
@@ -65,10 +65,10 @@ public class CalculatorAdapter extends RecyclerView.Adapter<CalculatorAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String code = dataSet[position].split("-")[0];
+        String code = dataSet[position];
         holder.getTextView().setText(code);
         try {
-            holder.getImageView().setImageResource(R.drawable.class.getField(code.toLowerCase()).getInt(null));
+            holder.getImageView().setImageResource(R.drawable.class.getField(code.toLowerCase()).getInt(null));//TODO what if not find image
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (NoSuchFieldException e) {

@@ -1,8 +1,8 @@
 package com.example.wjednymmiejscu.model;
 
 public class MarketStats {
-    private String m;
-    private Double h,l,v,r24h;
+    private String m; // market code
+    private Double h,l,v,r24h; // highest rate from last 24h, lowest rate from last 24h, volume from last 24h, average rate from last 24h
 
     public MarketStats() {
     }

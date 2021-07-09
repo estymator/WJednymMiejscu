@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 public class MarketStatsResponse {
     private String status;
     private MarketStats stats;
+    private String code;
 
     @Nullable
     private String[] errors;
@@ -45,5 +46,13 @@ public class MarketStatsResponse {
 
     public void setErrors(@Nullable String[] errors) {
         this.errors = errors;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

@@ -1,8 +1,8 @@
 package com.example.wjednymmiejscu.model;
 
 public class Transaction {
-    private String id,ty;
-    private Double t,a,r;
+    private String id,ty; //id, transaction type
+    private Double t,a,r; // timestamp, amount, rate
 
     public Transaction(){};
 

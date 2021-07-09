@@ -3,7 +3,7 @@ package com.example.wjednymmiejscu.model;
 import androidx.annotation.Nullable;
 
 public class OrderBook {
-    private String status;
+    private String status, code;
     private Offer[] sell, buy;
     private Long timestamp, seqNuo;
 
@@ -73,5 +73,13 @@ public class OrderBook {
 
     public void setErrors(@Nullable String[] error) {
         this.errors = errors;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

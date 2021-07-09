@@ -1,7 +1,7 @@
 package com.example.wjednymmiejscu.model;
 
 public class Offer {
-    private Double ra,ca,sa,pa,co;
+    private Double ra,ca,sa,pa,co; // rate, current rate, starting rate , previous rate, offers number
 
     public Offer() {
     }
