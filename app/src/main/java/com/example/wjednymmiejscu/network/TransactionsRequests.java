@@ -5,7 +5,6 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.wjednymmiejscu.model.LastTransactions;
-import com.example.wjednymmiejscu.model.OrderBook;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -47,10 +46,10 @@ public class TransactionsRequests {
                         }
                     }else{
                         Gson gson = new Gson();
-                        NetworkError errorBody = gson.fromJson(response.errorBody().charStream(), NetworkError.class);
-                        String message = errorBody.getMessage();
-                        Log.v(TAG,message);
-                        getLastTransactionsFailure(message);
+                        BitBayNetworkError errorBody = gson.fromJson(response.errorBody().charStream(), BitBayNetworkError.class);
+                        String errors =  String.join(",",errorBody.getErrors());;
+                        Log.v(TAG,errors);
+                        getLastTransactionsFailure(errors);
                     }
                 }
                 @Override

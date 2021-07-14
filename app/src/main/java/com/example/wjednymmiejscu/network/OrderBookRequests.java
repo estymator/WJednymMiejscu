@@ -5,7 +5,6 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.wjednymmiejscu.model.OrderBook;
-import com.example.wjednymmiejscu.model.TickerArray;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -47,10 +46,10 @@ public class OrderBookRequests {
                         }
                     }else{
                         Gson gson = new Gson();
-                        NetworkError errorBody = gson.fromJson(response.errorBody().charStream(), NetworkError.class);
-                        String message = errorBody.getMessage();
-                        Log.v(TAG,message);
-                        getOrderBookFailure(message);
+                        BitBayNetworkError errorBody = gson.fromJson(response.errorBody().charStream(), BitBayNetworkError.class);
+                        String errors =  String.join(",",errorBody.getErrors());
+                        Log.v(TAG,errors);
+                        getOrderBookFailure(errors);
                     }
                 }
                 @Override

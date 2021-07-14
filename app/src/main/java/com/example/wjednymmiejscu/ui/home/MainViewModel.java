@@ -78,7 +78,7 @@ public class MainViewModel extends ViewModel{
         return calculatorResult;
     }
 
-    public void instantiateCalculatorValues(){
+    public void initiateCalculatorValues(){
         decimalFormat.setRoundingMode(RoundingMode.DOWN);
         calculatorFirstRowCurr.setValue("BTC");
         calculatorSecondRowCurr.setValue("BTC");
@@ -110,6 +110,9 @@ public class MainViewModel extends ViewModel{
             }
 
         }
+    }
 
+    void refresh(){
+        loadRates();
     }
 }

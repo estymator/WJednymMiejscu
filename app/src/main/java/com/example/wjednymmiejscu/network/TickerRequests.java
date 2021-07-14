@@ -4,11 +4,8 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.wjednymmiejscu.model.Ticker;
 import com.example.wjednymmiejscu.model.TickerArray;
 import com.google.gson.Gson;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,10 +45,10 @@ public class TickerRequests {
                         }
                     }else{
                         Gson gson = new Gson();
-                        NetworkError errorBody = gson.fromJson(response.errorBody().charStream(), NetworkError.class);
-                        String message = errorBody.getMessage();
-                        Log.v(TAG,message);
-                        getTickerFailure(message);
+                        BitBayNetworkError errorBody = gson.fromJson(response.errorBody().charStream(), BitBayNetworkError.class);
+                        String errors =  String.join(",",errorBody.getErrors());;
+                        Log.v(TAG,errors);
+                        getTickerFailure(errors);
                     }
                 }
                 @Override

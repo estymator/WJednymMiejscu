@@ -6,9 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.currency.CurrencyActivity">
 
-    <TextView
-        android:id="@+id/currency_name_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+   <ImageView
+       android:id="@+id/currency_icon_imageView"
+       android:layout_width="75dp"
+       android:layout_height="75dp"
+       android:layout_margin="@dimen/basic_margin"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"/>
+
+   <TextView
+       android:id="@+id/currency_name_textView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_margin="@dimen/basic_margin"
+       android:textSize="@dimen/title_text_size"
+       app:layout_constraintStart_toEndOf="@id/currency_icon_imageView"
+       app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

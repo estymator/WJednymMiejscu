@@ -35,6 +35,12 @@ public class CurrencyViewModel extends ViewModel {
 
     }
 
+    void loadMarketData(){
+        orderBookRequests.loadOrderBook(this.ticker.getMarket().getCode(), orderBookResult);
+        marketStatsRequests.loadMarketStats(this.ticker.getMarket().getCode(), marketStatsResult);
+        transactionsRequests.loadLastTransaction(this.ticker.getMarket().getCode(), lastTransactionsResult);
+
+    }
     public MutableLiveData<MarketStatsResponse> getMarketStatsResult() {
         return marketStatsResult;
     }

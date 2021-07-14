@@ -17,7 +17,7 @@ public interface BitBayAPI {
     @GET("rest/trading/ticker")
     Call<TickerArray> getTickerData();
 
-    @GET("rest/trading/orderbook/{market}")
+    @GET("rest/trading/orderbook-limited/{market}/10")
     Call<OrderBook> getOrderBook(
             @Path("market") String market
     );

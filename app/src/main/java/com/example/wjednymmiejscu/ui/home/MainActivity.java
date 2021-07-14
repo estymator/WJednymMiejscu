@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -25,13 +26,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView currencyRecyclerView;
     private EditText amountEditText;
     private TextView calcResultTextView;
+    private SwipeRefreshLayout mainSwipeRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainViewModel = new ViewModelProvider(this, new MainViewModelProvider()).get(MainViewModel.class);
-        mainViewModel.instantiateCalculatorValues();
+        mainViewModel.initiateCalculatorValues();
         currencyRecyclerView = findViewById(R.id.main_currency_recyclerView);
         currencyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         currencyRecyclerView.setAdapter(mainViewModel.getCurrencyAdapter());
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 mainViewModel.getCurrencyAdapterDataSource().clear();
                 mainViewModel.getCurrencyAdapterDataSource().putAll(tickerArray.getItems());
                 mainViewModel.getCurrencyAdapter().notifyDataSetChanged();
+                mainSwipeRefresh.setRefreshing(false);
 
             }
         });
@@ -97,6 +100,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mainSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.main_swipeToRefresh);
+        mainSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mainViewModel.refresh();
+            }
+        });
         mainViewModel.loadRates();
 
     }
