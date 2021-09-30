@@ -1,6 +1,9 @@
 package com.example.wjednymmiejscu.adapters;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wjednymmiejscu.R;
@@ -25,13 +30,16 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
     public String[] markets;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private final TextView codeTextView, priceTextView;
+        private final TextView codeTextView, priceTextView, rateChangeTextView;
         private final ImageView iconImageView;
+        private final ConstraintLayout adapterLayout;
         public ViewHolder(View view){
             super(view);
+            adapterLayout=view.findViewById(R.id.currencyItem_constraintLayout);
             codeTextView = view.findViewById(R.id.currencyItem_code);
             priceTextView = view.findViewById(R.id.currencyItem_price);
             iconImageView = view.findViewById(R.id.currencyItem_icon);
+            rateChangeTextView = view.findViewById(R.id.currencyItem_rateChange_textView);
         }
 
         public TextView getCodeTextView() {
@@ -44,6 +52,14 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
 
         public ImageView getIconImageView() {
             return iconImageView;
+        }
+
+        public TextView getRateChangeTextView() {
+            return rateChangeTextView;
+        }
+
+        public ConstraintLayout getAdapterLayout() {
+            return adapterLayout;
         }
     }
 
@@ -60,14 +76,34 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if(dataSet.size()>0){
 
             String marketCode = markets[position];
             Ticker bufor = dataSet.get(marketCode);
+            double rateChange =0;
+            try{
+                rateChange=((bufor.getRate()-bufor.getPreviousRate())/bufor.getRate())*100;
+
+
+            }catch (Exception e){
+                Log.e(TAG, "rateChange calc error "+ e.getMessage());
+            }
+            try{
+                if(rateChange>=0){
+                    holder.getRateChangeTextView().setBackgroundColor(Color.parseColor("#3ecc25"));
+                }else{
+                    holder.getRateChangeTextView().setBackgroundColor(Color.parseColor("#c92926"));
+                }
+            }catch(Exception e){
+                Log.e(TAG,"change background error "+e.getMessage());
+            }
+
             holder.getCodeTextView().setText(bufor.getMarket().getCode().split("-")[0]);
             holder.getPriceTextView().setText(bufor.getRate().toString());
+            holder.getRateChangeTextView().setText(String.format("%04.2f ",rateChange));
             String code = bufor.getMarket().getCode().split("-")[0].toLowerCase();
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

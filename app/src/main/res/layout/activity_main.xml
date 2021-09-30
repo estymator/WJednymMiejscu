@@ -17,6 +17,17 @@
         android:layout_margin="@dimen/basic_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/main_rateChangeHeader_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_rate_change_header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/basic_margin"
+        android:layout_marginTop="@dimen/basic_margin"
+        android:layout_marginBottom="@dimen/basic_margin"
+        android:layout_marginEnd="120dp"/>
 
     <TextView
         android:id="@+id/currencyItem_priceHeader_textView"
@@ -25,7 +36,6 @@
         android:text="@string/main_price_header"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="@dimen/basic_margin"
-        android:layout_marginRight="@dimen/tab_margin"
         app:layout_constraintEnd_toEndOf="parent"
         />
 
@@ -72,6 +82,7 @@
                 app:layout_constraintTop_toBottomOf="@id/main_calcDesc_textView"
                 app:layout_constraintStart_toStartOf="parent"
                 />
+
 
             <EditText
                 android:id="@+id/main_amountToCalc_editText"

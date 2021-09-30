@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 mainViewModel.getCurrencyAdapterDataSource().clear();
                 mainViewModel.getCurrencyAdapterDataSource().putAll(tickerArray.getItems());
                 mainViewModel.getCurrencyAdapter().notifyDataSetChanged();
-                mainSwipeRefresh.setRefreshing(false);
+                mainSwipeRefresh.setRefreshing(false); // hide reloading icon
 
             }
         });

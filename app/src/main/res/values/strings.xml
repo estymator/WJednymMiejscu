@@ -10,4 +10,5 @@
     <string name="main_price_header">Kurs</string>
    <string name="main_calc_desc">Kalkulator kryptowalut, wybierz waluty i podaj ilosc:</string>
     <string name="main_calc_hint">Ilosc</string>
+    <string name="main_rate_change_header">Zmiana</string>
 </resources>
